@@ -1,0 +1,7 @@
+.BigMovieContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
