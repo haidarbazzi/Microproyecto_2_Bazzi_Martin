@@ -1,25 +1,33 @@
-import { Link, useNavigate } from "react-router-dom/dist";
-
+import React, { useState } from "react";
+import { slide as Menu } from "react-burger-menu";
+import { Link } from "react-router-dom/dist";
+import { HOME_URL, LOGIN_URL } from "../../constants/urls";
 import styles from "./Navbar.module.css";
-import { LOGIN_URL } from "../../constants/urls";
 
-export function Navabar() {
-  const navigate = useNavigate();
-  //   const { user, isLoadingUser } = useUserContext();
+export function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // const handleLogout = async () => {
-  //   await logout(() => navigate(HOME_URL));
-  // };
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
-    <nav className={styles.navbar}>
-      <ul className={styles.menu}>
-        <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
-          <Link to={LOGIN_URL} className={styles.link}>
-            <span>Inicia Sesion/Registrate</span>
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <header className={styles.h}>
+      {/* <button className={styles.abrir}>=</button> */}
+      <nav className={styles.nav}>
+        <ul className={styles.navlist}>
+          <li className={styles.listitem}>
+            <Link to={LOGIN_URL} className={styles.link}>
+              <span>Inicia Sesion/Registrate</span>
+            </Link>
+          </li>
+          <li className={styles.listitem}>
+            <Link to={HOME_URL} className={styles.link}>
+              <span>Home</span>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }

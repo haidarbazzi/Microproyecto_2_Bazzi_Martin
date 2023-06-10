@@ -11,13 +11,14 @@ import {
 } from "./constants/urls.js";
 import { Layout } from "./Layout/Layout.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import { HomePage } from "./pages/HomePage/HomePage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path={HOME_URL} element={<h1>Home pge</h1>} />
+          <Route path={HOME_URL} element={<HomePage />} />
           <Route path={LOGIN_URL} element={<LoginPage />} />
           <Route path={FAVORITES_URL} element={<h1>Favorites pge</h1>} />
           <Route path={MOVIE_URL} element={<h1>Movie pge</h1>} />
