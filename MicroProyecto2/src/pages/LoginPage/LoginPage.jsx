@@ -1,17 +1,50 @@
 import React, { useState } from "react";
 import styles from "./LoginPage.module.css";
 import { auth } from "../../firebase/config";
-import { signInWithGoogle } from "../../firebase/auth";
+import {
+  loginEmailAndPassword,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+} from "../../firebase/auth";
+import { useNavigate } from "react-router-dom";
 //import { registerWithEmailAndPassword } from "../../firebase/auth";
 
 const LoginPage = () => {
   const [registro, setRegistro] = useState(false);
 
-  const handleSubmit = async (e) => {
-    const correo = e.target.email.value;
-    const password = e.target.password.value;
+  const navigate = useNavigate();
 
-    console.log(correo);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleOnChange = async (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log({ formData });
+    if (registro) {
+      try {
+        await registerWithEmailAndPassword(formData.email, formData.password);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        await loginEmailAndPassword(formData.email, formData.password);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleSignInWithGoogle = async () => {
@@ -30,6 +63,8 @@ const LoginPage = () => {
             type="email"
             placeholder="Ingresar email"
             id="email"
+            name="email"
+            onChange={handleOnChange}
             required
           />
         </div>
@@ -40,10 +75,12 @@ const LoginPage = () => {
             type="password"
             placeholder="Ingresar contraseña"
             id="password"
+            name="password"
+            onChange={handleOnChange}
             required
           />
         </div>
-        <button className={styles.btn} type="submit" onClick={handleSubmit}>
+        <button className={styles.btn} type="submit">
           {registro ? "Registrate" : "Inicia Sesión"}
         </button>
       </form>

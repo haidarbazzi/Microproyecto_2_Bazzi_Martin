@@ -8,10 +8,13 @@ import {
   HOME_URL,
   LOGIN_URL,
   MOVIE_URL,
+  PROFILE_URL,
 } from "./constants/urls.js";
 import { Layout } from "./Layout/Layout.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import { HomePage } from "./pages/HomePage/HomePage.jsx";
+import ProfilePage from "./pages/Perfil/ProfilePage.jsx";
+import PrivateRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,8 +23,24 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route element={<Layout />}>
           <Route path={HOME_URL} element={<HomePage />} />
           <Route path={LOGIN_URL} element={<LoginPage />} />
-          <Route path={FAVORITES_URL} element={<h1>Favorites pge</h1>} />
+          <Route
+            path={PROFILE_URL}
+            element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={FAVORITES_URL}
+            element={
+              <PrivateRoute>
+                <h1>Favorites pge</h1>
+              </PrivateRoute>
+            }
+          />
           <Route path={MOVIE_URL} element={<h1>Movie pge</h1>} />
+          <Route path="/*" element={<h1>Not found</h1>} />
         </Route>
       </Routes>
     </BrowserRouter>
