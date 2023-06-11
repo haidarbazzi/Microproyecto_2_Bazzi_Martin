@@ -17,6 +17,7 @@ import { HomePage } from "./pages/HomePage/HomePage.jsx";
 import ProfilePage from "./pages/Perfil/ProfilePage.jsx";
 import PrivateRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
+import FavoritesPage from "./pages/Favorites/FavoritesPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -37,7 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             path={FAVORITES_URL}
             element={
               <PrivateRoute>
-                <h1>Favorites pge</h1>
+                <FavoritesPage />
               </PrivateRoute>
             }
           />
