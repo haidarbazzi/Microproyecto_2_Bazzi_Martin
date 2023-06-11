@@ -18,8 +18,6 @@ export const signInWithGoogle = async () => {
     if (isNewUser) {
       await createUserProfile(result.user.uid, {
         email: result.user.email,
-        admin: false,
-        favorites: [],
       });
     }
   } catch (error) {
