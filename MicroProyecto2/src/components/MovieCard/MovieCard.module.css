@@ -8,12 +8,21 @@
   
   display: flex;
   flex-direction: row;
-  background-color: rgb(255, 68, 68);
+  justify-content: space-around;
+  background-color: #4942E4;
+  height: 40vh;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   animation-name: cardDisplay;
   animation-duration: 2s;
+}
+
+img {
+  border-radius: 10px;
+  height: 30vh;
+  width: auto;
+  max-width: 30vh;
 }
 
 @keyframes cardDisplay{
@@ -28,10 +37,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: white;
 }
 
 .movies {
-  height: 100%;
+  height: 90%;
   width:50%;
 }
 

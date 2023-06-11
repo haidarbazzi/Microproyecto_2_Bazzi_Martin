@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route element={<Layout />}>
           <Route path={HOME_URL} element={<HomePage />} />
           <Route path={LOGIN_URL} element={<LoginPage />} />
+          <Route path={MOVIE_DETAIL_URL()} element={<MovieDetail />} />
           <Route
             path={PROFILE_URL}
             element={
@@ -41,7 +42,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </PrivateRoute>
             }
           />
-          <Route path={MOVIE_DETAIL_URL()} element={<MovieDetail />} />
+
           <Route path="/*" element={<h1>Not found</h1>} />
         </Route>
       </Routes>
