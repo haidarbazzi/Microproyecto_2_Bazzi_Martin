@@ -7,6 +7,7 @@ import {
   FAVORITES_URL,
   HOME_URL,
   LOGIN_URL,
+  MOVIE_DETAIL_URL,
   MOVIE_URL,
   PROFILE_URL,
 } from "./constants/urls.js";
@@ -15,6 +16,7 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import { HomePage } from "./pages/HomePage/HomePage.jsx";
 import ProfilePage from "./pages/Perfil/ProfilePage.jsx";
 import PrivateRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
+import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -39,7 +41,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </PrivateRoute>
             }
           />
-          <Route path={MOVIE_URL} element={<h1>Movie pge</h1>} />
+          <Route path={MOVIE_DETAIL_URL()} element={<MovieDetail />} />
           <Route path="/*" element={<h1>Not found</h1>} />
         </Route>
       </Routes>

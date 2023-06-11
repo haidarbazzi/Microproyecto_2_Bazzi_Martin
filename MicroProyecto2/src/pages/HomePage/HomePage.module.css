@@ -1,7 +1,14 @@
-.BigMovieContainer {
+.BigMovieContainer{
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 24px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.mainInput{
+  width: 70vw;
+  border-radius: 5px;
+  border: solid;
+  height: 100%;
 }

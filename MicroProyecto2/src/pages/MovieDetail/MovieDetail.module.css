@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.MovieInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.paragraph {
+    font-weight: 600;
+    margin-bottom: 10px;
+
+}
+
+.InfoSecundaria{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+img {
+    margin-top: 15px;
+    width: 30%;
+    height: 30%;
+}
+
+.containerGeneros{
+    display: flex;
+    flex-direction: column;
+}
+
+.containerActores {
+    display: flex;
+    flex-direction: column;
+}

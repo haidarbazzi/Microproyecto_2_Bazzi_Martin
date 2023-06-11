@@ -1,5 +1,41 @@
-.container {
-  background-color: rgb(6, 6, 65);
-  margin: 10px auto;
-  border-radius: 5px;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.container{
+  
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(255, 68, 68);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  animation-name: cardDisplay;
+  animation-duration: 2s;
+}
+
+@keyframes cardDisplay{
+  from {width: 98%}
+  to {width: 100%}
+
+}
+
+.movieInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.movies {
+  height: 100%;
+  width:50%;
+}
+
+.lanContainer {
+  display: flex;
+  flex-direction: column;
 }
