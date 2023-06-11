@@ -33,26 +33,29 @@ export default function MovieDetail() {
 
   return (
     <>
-        <img src={`https://image.tmdb.org/t/p/original/${currMovie.poster_path}`} alt={currMovie.original_title}/>
+        <img src={`https://image.tmdb.org/t/p/original/${currMovie.poster_path}`} alt={currMovie.original_title} className={styles.Image}/>
         <div className={styles.container}>
             <div className={styles.MovieInfo}>
-                <h2>Titulo: {currMovie.original_title} </h2>
-                <h3>Sinopsis: </h3>
+                <h2 className={styles.Title}>Titulo: {currMovie.original_title} </h2>
+                <h3 className={styles.SinopsisTitle}>Sinopsis: </h3>
+                <div className={styles.synopsis}>
                 <p className={styles.paragraph}>{currMovie.overview}</p>
+                </div>
+
                 <div className={styles.InfoSecundaria}>
                     <div className={styles.containerGeneros}>
-                    <h3>Generos:</h3>
+                    <h3 className={styles.subTitle}>Generos:</h3>
                     {
                         genres.map((genre)=> (
-                            <li className={styles.paragraph} key ={genre.name}>{genre.name}</li>
+                            <li className={styles.list} key ={genre.name}>{genre.name}</li>
                         ))
                     }
                     </div>
                     <div className={styles.containerActores}>
-                    <h3>Actores Principales: </h3>
+                    <h3 className={styles.subTitle}>Actores Principales: </h3>
                         {
                             actors.map((actor) => (
-                                <li className={styles.paragraph} key= {actor.name}>{actor.name}</li>
+                                <li className={styles.list} key= {actor.name}>{actor.name}</li>
                             ))
                         }
                     </div>

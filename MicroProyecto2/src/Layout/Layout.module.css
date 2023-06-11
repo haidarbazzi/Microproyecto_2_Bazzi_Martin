@@ -12,24 +12,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #00eeff;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #9ea2f0;
 }
 
 .body {
-  margin: 0px auto;
   display: flex;
   place-items: center;
+  flex-direction: column;
   min-height: 100vh;
   width: 100%;
 }
