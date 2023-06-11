@@ -26,7 +26,7 @@ export function HomePage() {
       <> 
           <div className={styles.Container}>
               
-              <h1>Peliculas Disponibles</h1>
+              <h1 className={styles.mainTitle}>PELICULAS DISPONIBLES</h1>
               <form onChange={(e) => setSearch(e.target.value)}> 
                 <input className={styles.mainInput} placeholder='Ingrese el nombre de la pelicula que desea buscar!'/>
               </form>
@@ -42,7 +42,7 @@ export function HomePage() {
               )
           }
               </div>
-              <h1>PROXIMOS ESTRENOS</h1>
+              <h1 className={styles.secondTitle}>PROXIMOS ESTRENOS</h1>
         <div className= {styles.BigMovieContainer}>
           {isLoading ? (
               <p>LOADING</p>
