@@ -23,7 +23,6 @@
   height: 30vh;
   width: auto;
   max-width: 30vh;
-  object-fit: cover;
 }
 
 @keyframes cardDisplay{

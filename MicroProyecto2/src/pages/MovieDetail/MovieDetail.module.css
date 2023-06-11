@@ -1,37 +1,75 @@
 .container {
     display: flex;
     flex-direction: row;
+    background-color: #11009E;
+    margin-top: 20px;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
 }
 
 .MovieInfo{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .paragraph {
-    font-weight: 600;
+    font-size: 1.5vw;
     margin-bottom: 10px;
-
 }
 
+.Image {
+    margin-top: 15px;
+    width: 30%;
+    height: 30%;
+    object-fit: cover;
+}
+
+.Title {
+    font-size: 3.7vw;
+}
+
+.SinopsisTitle {
+    font-size: 3vw;
+}
+.synopsis{
+    width: 90vw;
+    margin-bottom:15px;
+    margin-top: 15px;
+}
+
+.paragraph {
+    font-style:italic;
+    padding: 5px;
+    color: white;
+    font-size: 2.6vw;
+}
 .InfoSecundaria{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-}
-
-img {
-    margin-top: 15px;
-    width: 30%;
-    height: 30%;
+    align-self: center;
+    width: 90vw;
 }
 
 .containerGeneros{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .containerActores {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.subTitle {
+    font-size: 4vw;
+}
+
+.list {
+    font-size: 1.5vw;
 }
