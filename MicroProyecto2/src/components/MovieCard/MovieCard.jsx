@@ -5,10 +5,12 @@ import { Link } from "react-router-dom/dist";
 import { useMovies } from "../../hooks/useMovies";
 import { useFavorites } from "../../hooks/useFavorites";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
+import { useUser } from "../../contexts/UserContext";
 
 export function MovieCard({ movie }) {
   const { genres, getMovieId, languages } = useMovies();
   const { favoriteList, handleFavoriteButton } = useFavoritesContext();
+  const { user } = useUser();
 
   const isFavorite = favoriteList?.listOfIds?.includes(movie.id);
 
@@ -25,15 +27,17 @@ export function MovieCard({ movie }) {
           className={styles.movies}
         />
         <div className={styles.rigth_side}>
-          <button
-            className={styles.favoriteButon}
-            type="button"
-            onClick={() => {
-              handleFavoriteButton({ movieId: movie.id, isFavorite });
-            }}
-          >
-            {isFavorite ? "Eliminar favoritos" : "Agregar favoritos"}
-          </button>
+          {user && (
+            <button
+              className={styles.favoriteButon}
+              type="button"
+              onClick={() => {
+                handleFavoriteButton({ movieId: movie.id, isFavorite });
+              }}
+            >
+              {isFavorite ? "Eliminar favoritos" : "Agregar favoritos"}
+            </button>
+          )}
 
           <div className={styles.movieInfo}>
             <Link to={MOVIE_DETAIL_URL(movie.id)}>

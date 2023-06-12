@@ -3,54 +3,45 @@ import { useFavorites } from "../hooks/useFavorites";
 import { useUser } from "./UserContext";
 import { useMovies } from "../hooks/useMovies";
 
-export const FavoriteContext = React.createContext(null);
+export const FavoriteContext = createContext(null);
 
 const defaultList = {
   id: "",
   userId: "",
   listOfIds: [],
-  characters: [],
+  // movies: [],
 };
 
 export function FavoritesProvider({ children }) {
   const [favoriteList, setFavoriteList] = useState(defaultList);
   const [isLoading, setIsLoading] = useState(false);
+
   const { user } = useUser();
   const { getFavorites, handleFavorite } = useFavorites();
-  const { geMultipletMovieId } = useMovies();
+  const { getMultipleMovies } = useMovies();
 
   const handleFavoriteButton = async ({ movieId, isFavorite }) => {
     try {
-      //DEBUG
-      console.log("mi usuario es ", +user.profile.id);
-      console.log("FavoriteList ID: " + favoriteList.id);
-
       const { updatedListOfIds, favoriteListId } = await handleFavorite({
         movieId,
         isFavorite,
         listOfIds: favoriteList.listOfIds,
         favoriteListId: favoriteList.id,
-        userId: user.profile.id,
+        userId: user.id,
       });
 
-      //DEBUG
-      console.log("UPDATED LIST");
-      console.log(updatedListOfIds);
-      console.log("FAVORTIE LISTID");
-      console.log(favoriteListId);
+      // let updatedMovies = [];
 
-      let updatedMovies = [];
-
-      if (updatedListOfIds.length > 0) {
-        updatedMovies = await geMultipletMovieId(updatedListOfIds);
-      }
+      // if (updatedListOfIds.length > 0) {
+      //   updatedMovies = await getMultipleMovies(updatedListOfIds);
+      // }
 
       setFavoriteList({
         ...favoriteListId,
-        userId: user.profile.id,
+        userId: user.id,
         listOfIds: updatedListOfIds,
         id: favoriteList.id,
-        movies: updatedMovies,
+        //movies: updatedMovies,
       });
     } catch (error) {
       console.log("Esta fallando cambiando el boton de favs");
@@ -60,7 +51,8 @@ export function FavoritesProvider({ children }) {
   const handleGetFavorites = async () => {
     try {
       setIsLoading(true);
-      const data = await getFavorites(user.profile.id);
+      const data = await getFavorites(user.id);
+      console.log(data);
       setFavoriteList(data || defaultList);
       setIsLoading(false);
     } catch (error) {
@@ -70,7 +62,6 @@ export function FavoritesProvider({ children }) {
 
   useEffect(() => {
     if (!isLoading && user?.id) {
-      console.log("entra acA?");
       handleGetFavorites();
     }
   }, [user]);

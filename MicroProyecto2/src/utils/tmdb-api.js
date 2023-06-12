@@ -79,12 +79,13 @@ export const fetchProxEstrenos = async (setEstrenos) => {
 };
 
 export const fetchMultipleMovies = async (listOfIds) => {
-  try {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movies/${listOfIds.join(
-        ","
-      )}?api_key=YOUR_API_KEY`
-    );
-    console.log(response.data);
-  } catch (error) {}
+  consloe.log("DENTRO DEL LA API");
+  console.log(listOfIds);
+  const lista_de_return = [];
+  for (let index = 0; index < listOfIds.length; index++) {
+    let urlId = `https://api.themoviedb.org/3/movie/${listOfIds[i]}?language=en-US`;
+    let response = await fetch(urlId, options3);
+    let responseJSON = await response.json();
+    lista_de_return = [responseJSON];
+  }
 };

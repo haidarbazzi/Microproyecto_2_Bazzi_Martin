@@ -6,29 +6,13 @@ import {
 import { useMovies } from "./useMovies";
 
 export function useFavorites() {
-  const { geMultipletMovieId } = useMovies();
+  const { getMultipleMovies } = useMovies();
 
   const addNewFavorite = async ({ movieId, listOfIds, favoriteListId }) => {
-    //DEBUG
-    console.log("Esta es una lista de ids" + listOfIds);
-    console.log(listOfIds);
-
     const newList = [...listOfIds, movieId];
-
-    //DEBUG
-    console.log("NEW LIST");
-    console.log(newList);
-
-    //DEBUG
-    console.log("ID DE FIREBASE: ", favoriteListId);
-
     await updateFavortiteList(favoriteListId, {
       listOfIds: newList,
     });
-
-    //DEBUG
-    console.log("NEW LIST despues de UPDATE");
-    console.log(newList);
 
     return {
       updatedListOfIds: newList,
@@ -37,10 +21,8 @@ export function useFavorites() {
   };
 
   const removeFavorite = async ({ movieId, listOfIds, favoriteListId }) => {
-    //DEBUG
-    console.log("LLEGA HASTA ACA?");
-
     const newList = listOfIds.filter((item) => item !== movieId);
+
     await updateFavortiteList(favoriteListId, {
       listOfIds: newList,
     });
@@ -58,27 +40,19 @@ export function useFavorites() {
     favoriteListId,
     userId,
   }) => {
-    //DEBUG
-    console.log("Entre a handleFavorites", +movieId);
-    console.log(favoriteListId);
-    console.log("Su userID es " + userId);
-
     let currentFavorites = {
       listOfIds,
       favoriteListId,
     };
 
-    if (!favoriteListId && userId) {
-      //DEBUG
-      console.log("Llegue hasta aca");
+    console.log("Este es mi usuario y el id de la lista de favoritos de el.");
+    console.log({ userId, favoriteListId });
 
+    if (!favoriteListId && userId) {
       const newList = await createFavoriteList({
         listOfIds: [],
         userId,
       });
-
-      //DEBUG
-      console.log("El ID de la nueva lista es " + newList.id);
 
       currentFavorites = {
         listOfIds: [],
@@ -88,15 +62,12 @@ export function useFavorites() {
 
     const payload = {
       movieId,
-      listOfIds,
+      listOfIds: currentFavorites.listOfIds,
       favoriteListId: currentFavorites.favoriteListId,
     };
 
-    //DEBUG
+    console.log("Este es mi payload");
     console.log(payload);
-
-    //DEBUG
-    console.log(currentFavorites.favoriteListId);
 
     if (isFavorite) {
       return removeFavorite(payload);
@@ -105,20 +76,18 @@ export function useFavorites() {
     }
   };
 
-  const getFavorites = async (userId) => {
+  const getFavorites = async (userId = "") => {
     try {
-      //DEBUG
-      console.log(userId);
-
+      console.log("Hace Fetch?");
       const favoritesData = await fetchFavoritesBbyUserId(userId);
-      //DEBUG
-      console.log("estoy llegando a get favorites");
-      console.log(favoritesData);
 
+      console.log("FAVORITES DATA");
+      console.log(favoritesData);
       let moviesList = [];
 
       if (favoritesData?.listOfIds.lenght > 0) {
-        moviesList = await geMultipletMovieId(favoritesData?.listOfIds);
+        console.log("llega a pedir a la api?");
+        moviesList = await getMultipleMovies(favoritesData?.listOfIds);
       }
 
       //OJO CON ESTO

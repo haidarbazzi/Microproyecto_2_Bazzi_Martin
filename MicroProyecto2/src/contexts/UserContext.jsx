@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { getUserProfile } from "../firebase/users";
 
-export const UserContext = React.createContext();
+export const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -11,14 +11,11 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (firebaseUser) => {
-      console.log(firebaseUser);
-      console.log("waka");
       setIsLoading(true);
-      if (firebaseUser && !user) {
+      if (firebaseUser) {
         const profile = await getUserProfile(firebaseUser.email);
-        setUser({ profile });
+        setUser(profile);
       } else {
-        console.log("entra aca?");
         setUser(null);
       }
       setIsLoading(false);

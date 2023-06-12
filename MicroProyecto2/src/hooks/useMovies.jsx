@@ -4,6 +4,7 @@ import {
   fetchProxEstrenos,
   fetchById,
   fetchActors,
+  fetchMultipleMovies,
 } from "../utils/tmdb-api";
 
 export function useMovies() {
@@ -53,14 +54,14 @@ export function useMovies() {
     } catch (error) {}
   }, []);
 
-  const geMultipletMovieId = async (ListOfIds) => {
-    try {
-      setIsLoading(true);
-      const { data } = await fetchMultipleMovies(ListOfIds);
-      setIsLoading(false);
+  const getMultipleMovies = async (ListOfIds) => {
+    console.log("Entro aca?");
+    console.log(ListOfIds);
+    setIsLoading(true);
+    const { data } = await fetchMultipleMovies(ListOfIds);
+    setIsLoading(false);
 
-      return Array.isArray(data) ? data : [data];
-    } catch (error) {}
+    return Array.isArray(data) ? data : [data];
   };
 
   const getActors = useCallback(async (id) => {
@@ -89,6 +90,6 @@ export function useMovies() {
     setActors,
     setLanguages,
     languages,
-    geMultipletMovieId,
+    getMultipleMovies,
   };
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
-import { useMovies } from "../../hooks/useMovies";
 import styles from "./FavoritesPage.module.css";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
 

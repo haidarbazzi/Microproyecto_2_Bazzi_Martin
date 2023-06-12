@@ -19,7 +19,14 @@ export async function fetchFavoritesBbyUserId(userId) {
     where("userId", "==", userId)
   );
 
+  console.log("QUERY");
+  console.log(favoriteQuery);
+
   const results = await getDocs(favoriteQuery);
+
+  //QUERY
+  console.log("RESULT");
+  console.log(results);
 
   if (results.size > 0) {
     const favoritesList = results.docs.map((item) => ({
@@ -33,23 +40,7 @@ export async function fetchFavoritesBbyUserId(userId) {
 }
 
 export async function updateFavortiteList(favoriteListId, data) {
-  //DEBUG
-  console.log(
-    "Este es el id de favorite " + favoriteListId + " esta es la data "
-  );
-  console.log(data);
-
+  console.log("Estoy en update");
   const listRef = doc(db, "favorites", favoriteListId);
-
-  //DEBUG
-  console.log("LIST REF");
-  console.log(listRef);
-
-  const mireturn = await updateDoc(listRef, data);
-
-  //DEBUG
-  console.log("MI RETRUN");
-  console.log(mireturn);
-
-  return mireturn;
+  return updateDoc(listRef, data);
 }
