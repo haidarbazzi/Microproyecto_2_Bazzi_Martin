@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/dist";
 import { useMovies } from "../../hooks/useMovies";
 import styles from "./MovieDetail.module.css";
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
+import { useUser } from "../../contexts/UserContext";
+import { RESERVAR_MOVIE } from "../../constants/urls";
 
 export default function MovieDetail() {
   const { movieId } = useParams();
@@ -19,6 +22,8 @@ export default function MovieDetail() {
     getUpcoming,
     fechaEstreno,
   } = useMovies();
+  const { user } = useUser();
+  const { favoriteList, handleFavoriteButton } = useFavoritesContext();
 
   useEffect(() => {
     if (movieId) {
@@ -82,36 +87,9 @@ export default function MovieDetail() {
                   {genre.name}
                 </li>
               ))}
-              <div className={styles.InfoSecundaria}>
-                <div className={styles.containerGeneros}>
-                  <h3 className={styles.subTitle}>Generos:</h3>
-                  {genres.map((genre) => (
-                    <li className={styles.list} key={genre.name}>
-                      {genre.name}
-                    </li>
-                  ))}
-                </div>
-                <div className={styles.containerActores}>
-                  <h3 className={styles.subTitle}>Actores Principales: </h3>
-                  {actors.map((actor) => (
-                    <li className={styles.list} key={actor.name}>
-                      {actor.name}
-                    </li>
-                  ))}
-                </div>
-              </div>
               <br />
               <h3>Popularidad: {currMovie.popularity}</h3>
               <h3>Duracion: {currMovie.runtime} minutos</h3>
-
-              {estrenada ? (
-                <h3>PROXIMAMENTE: {fechaEstreno}</h3>
-              ) : (
-                <>
-                  <br></br>
-                  <button>RESERVAR</button>
-                </>
-              )}
             </div>
             <div className={styles.containerActores}>
               <h3 className={styles.subTitle}>Actores Principales: </h3>
@@ -122,22 +100,32 @@ export default function MovieDetail() {
               ))}
             </div>
           </div>
-          {user && (
-            <button
-              className={styles.favoriteButon}
-              type="button"
-              onClick={() => {
-                handleFavoriteButton({ movieId: movieId, isFavorite });
-              }}
-            >
-              {isFavorite ? "Eliminar favoritos" : "Agregar favoritos"}
-            </button>
-          )}
-          {/* {user && (
+          <div className={styles.botones}>
+            {estrenada ? (
+              <h3>PROXIMAMENTE: {fechaEstreno}</h3>
+            ) : (
+              <>
+                <br></br>
+                <button className={styles.buton}>RESERVAR</button>
+              </>
+            )}
+            {user && (
+              <button
+                className={styles.buton}
+                type="button"
+                onClick={() => {
+                  handleFavoriteButton({ movieId: movieId, isFavorite });
+                }}
+              >
+                {isFavorite ? "Eliminar favoritos" : "Agregar favoritos"}
+              </button>
+            )}
+            {/* {user && (
             <Link to={RESERVAR_MOVIE}>
-              <span>RESERVA YA!</span>
+            <span>RESERVA YA!</span>
             </Link>
           )} */}
+          </div>
         </div>
       </div>
     </>
