@@ -15,12 +15,13 @@ export function useMovies() {
   const [genres, setGenres] = useState([]);
   const [actors, setActors] = useState([]);
   const [languages, setLanguages] = useState([]);
+  const [fechaEstreno, setFechaEstreno] = useState("");
   //genres.map((genre) => {setGenre(genre.name)})
 
   const getUpcoming = useCallback(async () => {
     try {
       setIsLoading(true);
-      const { data } = await fetchProxEstrenos(setEstrenos);
+      const { data } = await fetchProxEstrenos(setEstrenos, setFechaEstreno);
       setEstrenos(data.results);
       setIsLoading(false);
       return estrenos;
@@ -96,5 +97,6 @@ export function useMovies() {
     languages,
     getMultipleMovies,
     getAMovie,
+    fechaEstreno,
   };
 }

@@ -4,6 +4,7 @@ import {MovieCard} from '../../components/MovieCard/MovieCard'
 import { useMovies } from '../../hooks/useMovies'
 
 import { useEffect } from 'react'
+import Slider from '../../components/Slider/Slider'
 
 export function HomePage() {
   const {isLoading, movies, getMovies,setIsLoading, getUpcoming, estrenos, currMovie, getMovieId} = useMovies();
@@ -22,10 +23,17 @@ export function HomePage() {
         setIsLoading(false);
     }, [])
 
+    const sliderDiv = {
+      height: '50vh',
+      width: '100vw',
+    }
+
     return (
       <> 
           <div className={styles.Container}>
-              
+              <div style={sliderDiv}>
+                <Slider />
+              </div>
               <h1 className={styles.mainTitle}>PELICULAS DISPONIBLES</h1>
               <form onChange={(e) => setSearch(e.target.value)}> 
                 <input className={styles.mainInput} placeholder='Ingrese el nombre de la pelicula que desea buscar!'/>

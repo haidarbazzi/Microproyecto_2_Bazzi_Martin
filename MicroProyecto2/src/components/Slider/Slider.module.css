@@ -1,0 +1,31 @@
+.img{
+    object-fit: cover;
+    height: 50vh;
+    width: 100vw;
+
+}
+
+.slideBtn {
+    height: 45px;
+    width: 45px;
+}
+
+.rightArrow {
+    position:absolute;
+    top: 50%;
+    right: 60px;
+    height: 45px;
+    width: 45px;
+    background-color: rgb(238, 255, 80);
+    z-index: 1;
+}
+
+.leftArrow {
+    position:absolute;
+    top: 50%;
+    left: 60px;
+    height: 45px;
+    width: 45px;
+    background-color: rgb(238, 255, 80);
+    z-index: 1;
+}
