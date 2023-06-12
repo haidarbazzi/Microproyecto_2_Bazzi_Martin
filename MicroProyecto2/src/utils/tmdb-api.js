@@ -65,15 +65,15 @@ export const fetchActors = async (setActors, id) => {
     const url4 = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
     const response = await fetch(url4, options4);
     const responseJSON = await response.json();
-    console.log(responseJSON.cast);
     setActors(responseJSON.cast.slice(0, 10));
   } catch (error) {}
 };
-export const fetchProxEstrenos = async (setEstrenos) => {
+export const fetchProxEstrenos = async (setEstrenos, setFechaEstreno) => {
   try {
     const response = await fetch(url2, options2);
     const responseJSON = await response.json();
     setEstrenos(responseJSON.results);
+    setFechaEstreno(responseJSON.dates.minimum)
     return responseJSON;
   } catch (error) {}
 };
@@ -81,11 +81,11 @@ export const fetchProxEstrenos = async (setEstrenos) => {
 export const fetchMultipleMovies = async (listOfIds) => {
   consloe.log("DENTRO DEL LA API");
   console.log(listOfIds);
-  const lista_de_return = [];
+  let lista_de_return = [];
   for (let index = 0; index < listOfIds.length; index++) {
     let urlId = `https://api.themoviedb.org/3/movie/${listOfIds[i]}?language=en-US`;
     let response = await fetch(urlId, options3);
     let responseJSON = await response.json();
-    lista_de_return = [responseJSON];
+    lista_de_return = responseJSON;
   }
 };

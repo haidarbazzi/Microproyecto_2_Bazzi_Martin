@@ -1,19 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/dist'
 import { useMovies } from '../../hooks/useMovies';
 import styles from './MovieDetail.module.css'
 
 export default function MovieDetail() {
     const {movieId} = useParams();
-    const {getMovieId, currMovie, isLoading, setIsLoading, genres, getActors, actors} = useMovies();
+    const [estrenada, setEstrenada] = useState(false);
+    const [refresh, setRefresh] = useState(false)
+    const {getMovieId, currMovie, isLoading, setIsLoading, genres, getActors, actors, estrenos, getUpcoming, fechaEstreno} = useMovies();
     
     useEffect(()=> {
         if(movieId){
             getMovieId(movieId);
             getActors(movieId);
+            getUpcoming();
+            setRefresh(true);
             setIsLoading(false);
         }
     }, [getMovieId])
+
+    useEffect(() => {
+        estrenos.map((estreno) => {
+          if(estreno.original_title === currMovie.original_title) {
+            setEstrenada(true);
+          }
+        })
+      
+      
+    })
     
         if (isLoading) {
     return (
@@ -61,7 +75,14 @@ export default function MovieDetail() {
                     </div>
                     
                 </div>
+                <br/>
+                <h3>Popularidad: {currMovie.popularity}</h3>
+                <h3>Duracion: {currMovie.runtime} minutos</h3>
                 
+                {
+                  estrenada ? <h3>PROXIMAMENTE: {fechaEstreno}</h3> : <><br></br><button>RESERVAR</button></>
+                }
+
             </div>
         </div>
     </>

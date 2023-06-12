@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 import {
+  ALL_RESERVATIONS_URL,
   FAVORITES_URL,
   HOME_URL,
   LOGIN_URL,
@@ -16,8 +17,10 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import { HomePage } from "./pages/HomePage/HomePage.jsx";
 import ProfilePage from "./pages/Perfil/ProfilePage.jsx";
 import PrivateRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
+import ProtectedRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import FavoritesPage from "./pages/Favorites/FavoritesPage.jsx";
+import ReservationsPage from "./pages/ReservationsPage/ReservationsPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -43,7 +46,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </PrivateRoute>
             }
           />
-
+          <Route
+            path={ALL_RESERVATIONS_URL}
+            element={
+              <ProtectedRoute>
+                <ReservationsPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/*" element={<h1>Not found</h1>} />
         </Route>
       </Routes>
