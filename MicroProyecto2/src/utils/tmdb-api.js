@@ -50,7 +50,6 @@ export const fetchById = async (setCurrMovie, setGenres, setLanguages, id) => {
   } catch (error) {}
 };
 
-const url4 = "https://api.themoviedb.org/3/movie/569094/credits?language=en-US";
 const options4 = {
   method: "GET",
   headers: {
