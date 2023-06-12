@@ -45,14 +45,20 @@ export function useFavorites() {
       favoriteListId,
     };
 
-    console.log("Este es mi usuario y el id de la lista de favoritos de el.");
+    console.log("Este es mi usuario y el id de la lista de favoritos de el. 1");
     console.log({ userId, favoriteListId });
 
     if (!favoriteListId && userId) {
+      console.log("Esta entrando a crea un archivo????? 2");
+      console.log(favoriteListId);
+
       const newList = await createFavoriteList({
         listOfIds: [],
         userId,
       });
+
+      console.log("CURRENT FAVORITES");
+      console.log(currentFavorites);
 
       currentFavorites = {
         listOfIds: [],
@@ -78,24 +84,24 @@ export function useFavorites() {
 
   const getFavorites = async (userId = "") => {
     try {
-      console.log("Hace Fetch?");
       const favoritesData = await fetchFavoritesBbyUserId(userId);
 
       console.log("FAVORITES DATA");
       console.log(favoritesData);
       let moviesList = [];
 
-      if (favoritesData?.listOfIds.lenght > 0) {
-        console.log("llega a pedir a la api?");
-        moviesList = await getMultipleMovies(favoritesData?.listOfIds);
-      }
+      // if (favoritesData?.listOfIds.lenght > 0) {
+      //   console.log("llega a pedir a la api?");
+      //   moviesList = await getMultipleMovies(favoritesData?.listOfIds);
+      // }
 
       //OJO CON ESTO
       const data = {
         ...favoritesData,
-        listOfIds: moviesList,
       };
 
+      console.log("DATAAA");
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);

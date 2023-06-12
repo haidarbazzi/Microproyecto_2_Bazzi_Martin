@@ -1,0 +1,16 @@
+.conatiner {
+  display: flex;
+  flex-direction: column;
+}
+
+.conatiner .botones {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
+.conatiner .botones .filas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

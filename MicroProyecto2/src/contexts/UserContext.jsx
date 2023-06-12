@@ -15,6 +15,7 @@ export function UserContextProvider({ children }) {
       if (firebaseUser) {
         const profile = await getUserProfile(firebaseUser.email);
         setUser(profile);
+        //TODO: PONER navigate
       } else {
         setUser(null);
       }

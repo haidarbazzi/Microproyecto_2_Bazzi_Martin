@@ -29,7 +29,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({ formData });
     if (registro) {
       try {
         await registerWithEmailAndPassword(formData.email, formData.password);
@@ -50,6 +49,7 @@ const LoginPage = () => {
   const handleSignInWithGoogle = async () => {
     console.log("TUKI");
     await signInWithGoogle();
+    navigate("/");
   };
 
   return (

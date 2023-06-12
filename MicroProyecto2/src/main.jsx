@@ -10,6 +10,7 @@ import {
   MOVIE_DETAIL_URL,
   MOVIE_URL,
   PROFILE_URL,
+  RESERVAR_MOVIE,
 } from "./constants/urls.js";
 import { Layout } from "./Layout/Layout.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
@@ -18,6 +19,7 @@ import ProfilePage from "./pages/Perfil/ProfilePage.jsx";
 import PrivateRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import FavoritesPage from "./pages/Favorites/FavoritesPage.jsx";
+import ReservationPage from "./pages/ReservationPage/ReservationPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -40,6 +42,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={
               <PrivateRoute>
                 <FavoritesPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={RESERVAR_MOVIE}
+            element={
+              <PrivateRoute>
+                <ReservationPage />
               </PrivateRoute>
             }
           />

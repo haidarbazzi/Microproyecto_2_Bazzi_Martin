@@ -27,18 +27,6 @@ export function MovieCard({ movie }) {
           className={styles.movies}
         />
         <div className={styles.rigth_side}>
-          {user && (
-            <button
-              className={styles.favoriteButon}
-              type="button"
-              onClick={() => {
-                handleFavoriteButton({ movieId: movie.id, isFavorite });
-              }}
-            >
-              {isFavorite ? "Eliminar favoritos" : "Agregar favoritos"}
-            </button>
-          )}
-
           <div className={styles.movieInfo}>
             <Link to={MOVIE_DETAIL_URL(movie.id)}>
               <span>

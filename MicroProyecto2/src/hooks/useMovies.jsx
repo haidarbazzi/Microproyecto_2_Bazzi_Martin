@@ -27,6 +27,10 @@ export function useMovies() {
     } catch (error) {}
   }, []);
 
+  const getAMovie = async () => {
+    getMovies();
+  };
+
   const getMovies = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -91,5 +95,6 @@ export function useMovies() {
     setLanguages,
     languages,
     getMultipleMovies,
+    getAMovie,
   };
 }

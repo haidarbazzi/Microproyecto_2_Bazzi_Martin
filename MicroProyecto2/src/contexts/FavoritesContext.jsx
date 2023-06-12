@@ -30,18 +30,10 @@ export function FavoritesProvider({ children }) {
         userId: user.id,
       });
 
-      // let updatedMovies = [];
-
-      // if (updatedListOfIds.length > 0) {
-      //   updatedMovies = await getMultipleMovies(updatedListOfIds);
-      // }
-
       setFavoriteList({
-        ...favoriteListId,
         userId: user.id,
         listOfIds: updatedListOfIds,
         id: favoriteList.id,
-        //movies: updatedMovies,
       });
     } catch (error) {
       console.log("Esta fallando cambiando el boton de favs");

@@ -33,6 +33,10 @@ export async function fetchFavoritesBbyUserId(userId) {
       ...item.data(),
       id: item.id,
     }));
+
+    console.log("ESTO ES EN FETCHFAOVITESBYID");
+    console.log(favoritesList);
+
     return favoritesList[0];
   } else {
     return null;
