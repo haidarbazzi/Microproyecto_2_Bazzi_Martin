@@ -22,6 +22,7 @@ import ProtectedRoute from "./components/PrivateRoutes/PrivateRoute.jsx";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import FavoritesPage from "./pages/Favorites/FavoritesPage.jsx";
 import ReservationsPage from "./pages/ReservationsPage/ReservationsPage.jsx";
+import ReservaPelicula from "./pages/ReservationPage/ReservationPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -51,7 +52,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             path={ALL_RESERVATIONS_URL}
             element={
               <ProtectedRoute>
-                <ReservationsPage />
+                <ReservaPelicula />
               </ProtectedRoute>
             }
           />
